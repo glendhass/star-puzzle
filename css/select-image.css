@@ -1,0 +1,39 @@
+body {
+  background-color: var(--color-green-background);
+  padding: 10px 80px;
+}
+#box-up {
+  display: flex;
+  justify-content: space-between;
+}
+#img-star{
+  width: 100px;
+}
+h1 {
+  color: var(--color-orange-title);
+  font-family: "Gagalin", sans-serif;
+  font-weight: lighter;
+  font-size-adjust: 1;
+}
+#box-escolhas {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: indianred;
+  border-radius: 10px;
+}
+.box-img {
+  display: flex;
+  justify-content: space-between; /* Ajusta o espaçamento */
+  gap: 10px; /* Espaço entre as imagens */
+}
+.box-img img {
+  width: 200px; /* Ajusta o tamanho das imagens */
+  height: 200px;
+  border-radius: 10px;
+} 
+.p-categoria {
+  color: var(--color-green-background);
+  font-family: "Gagalin", sans-serif;
+  font-weight: lighter;
+  font-size-adjust: 1;
+}
