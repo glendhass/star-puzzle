@@ -1,0 +1,12 @@
+:root {
+    --color-orange: #e87c67;
+    --color-pink: #e6a3ad;
+
+    --color-orange-title: #e65425;
+    --color-orange-subtitle: #e46e57;
+    --color-green-background: #eaefec;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
