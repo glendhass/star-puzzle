@@ -17,11 +17,11 @@ body {
 
 .pos-correta {
   position: absolute;
-  width: 50%; 
-  height: 50%; 
+  width: 50%;
+  height: 50%;
   box-sizing: border-box;
 
-  z-index: 1; 
+  z-index: 1;
 
   display: flex;
   justify-content: center;
@@ -37,7 +37,7 @@ body {
   width: 300px;
   height: 300px;
   background-color: rgba(255, 0, 0, 0.5);
-  z-index: 2; 
+  z-index: 2;
 }
 
 #div1 {
@@ -73,4 +73,36 @@ body {
 #encaixe4 {
   bottom: -25px;
   right: -25px;
+}
+
+.parte {
+  width: 250px;
+  height: 250px;
+  background-image: url("/assets/images/natureza/img-1-V.jpg");
+  background-size: 500px 500px;
+  position: absolute;
+}
+.parte1 {
+  background-position: 0px 0px;
+  top: 50px;
+  left: 100px;
+  z-index: 3;
+}
+.parte2 {
+  background-position: -250px 0px;
+  top: 350px;
+  left: 100px;
+  z-index: 3;
+}
+.parte3 {
+  background-position: 0px -250px;
+  top: 50px;
+  left: 1000px;
+  z-index: 3;
+}
+.parte4 {
+  background-position: -250px -250px;
+  top: 350px;
+  left: 1000px;
+  z-index: 3;
 }

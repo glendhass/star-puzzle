@@ -20,67 +20,12 @@
         <div id="encaixe3" class="encaixe"></div>
         <div id="encaixe4" class="encaixe"></div>
       </div>
+      <div class="parte parte1"></div>
+      <div class="parte parte2"></div>
+      <div class="parte parte3"></div>
+      <div class="parte parte4"></div>
     </div>
 
-    <div id="div-quad"></div>
-    <style>
-      #div-quad {
-        width: 250px;
-        height: 250px;
-        background-color: #3498db;
-        position: absolute;
-        top: 50px;
-        left: 100px;
-        cursor: move;
-        border-radius: 10px;
-        z-index: 3;
-      }
-    </style>
-
-    <div id="div-quad-2"></div>
-    <style>
-      #div-quad-2 {
-        width: 250px;
-        height: 250px;
-        background-color: #ee159b;
-        position: absolute;
-        top: 350px;
-        left: 100px;
-        cursor: move;
-        border-radius: 10px;
-        z-index: 3;
-      }
-    </style>
-
-    <div id="div-quad-3"></div>
-    <style>
-      #div-quad-3 {
-        width: 250px;
-        height: 250px;
-        background-color: #ee2315;
-        position: absolute;
-        top: 50px;
-        left: 1000px;
-        cursor: move;
-        border-radius: 10px;
-        z-index: 3;
-      }
-    </style>
-
-    <div id="div-quad-4"></div>
-    <style>
-      #div-quad-4 {
-        width: 250px;
-        height: 250px;
-        background-color: #27ee15;
-        position: absolute;
-        top: 350px;
-        left: 1000px;
-        cursor: move;
-        border-radius: 10px;
-        z-index: 3;
-      }
-    </style>
 
     <script>
       function arraste(div, encaixediv) {
@@ -121,12 +66,11 @@
           }
         });
       }
-      arraste(document.getElementById("div-quad"), "encaixe1");
-      arraste(document.getElementById("div-quad-2"), "encaixe2");
-      arraste(document.getElementById("div-quad-3"), "encaixe3");
-      arraste(document.getElementById("div-quad-4"), "encaixe4");
+      arraste(document.querySelector(".parte1"), "encaixe1");
+      arraste(document.querySelector(".parte2"), "encaixe2");
+      arraste(document.querySelector(".parte3"), "encaixe3");
+      arraste(document.querySelector(".parte4"), "encaixe4");
 
-      const div = document.getElementById("div-quad");
     </script>
   </body>
 </html>
