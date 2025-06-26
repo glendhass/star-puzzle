@@ -106,3 +106,45 @@ body {
   left: 1000px;
   z-index: 3;
 }
+
+#fundo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 9999;
+}
+
+#caixa {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff; 
+  height: 200px;
+  width: 400px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  text-align: center;
+  margin-top: 2px;
+}
+
+#parabens {
+  padding-top: 5px;
+  padding-bottom: 25px;
+}
+
+#pergunta {
+  padding-bottom: 40px;
+}
+
+#botao-recarregar {
+  padding: 10px 20px;
+  cursor: pointer;
+}

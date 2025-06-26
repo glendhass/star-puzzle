@@ -26,8 +26,9 @@
       <div class="parte parte4"></div>
     </div>
 
-
     <script>
+      let conta = 0;
+
       function arraste(div, encaixediv) {
         let arrastando = false;
         let offsetX, offsetY;
@@ -52,6 +53,8 @@
           const encaixe = pos.getBoundingClientRect();
           const quad = div.getBoundingClientRect();
 
+          let afirmar;
+
           if (
             quad.top >= encaixe.top &&
             quad.bottom <= encaixe.bottom &&
@@ -61,8 +64,42 @@
             div.style.backgroundColor = "black";
             div.style.top = encaixe.top + 25 + "px";
             div.style.left = encaixe.left + 25 + "px";
-            div.dataset.fixado = "true";
             div.style.cursor = "default";
+
+            if (div.dataset.fixado !== "true") {
+              conta += 1;
+              div.dataset.fixado = "true";
+
+              if (conta == 4) {
+                const fundo = document.createElement("div");
+                fundo.id = "fundo";
+
+                const caixa = document.createElement("div");
+                caixa.id = "caixa";
+
+                const parab = document.createElement("p");
+                parab.id = "parabens";
+                parab.textContent =
+                  "Parabéns! Você conseguiu completar o quebra-cabeça! 🎉";
+                caixa.appendChild(parab);
+
+                const p = document.createElement("p");
+                p.id = "pergunta";
+                p.textContent = "Você quer tentar de novo?";
+                caixa.appendChild(p);
+
+                const botao = document.createElement("button");
+                botao.id = "botao-recarregar";
+                botao.textContent = "Tentar novamente";
+                botao.onclick = function () {
+                  location.reload();
+                };
+                caixa.appendChild(botao);
+
+                document.body.appendChild(caixa);
+                document.body.appendChild(fundo);
+              }
+            }
           }
         });
       }
@@ -70,7 +107,6 @@
       arraste(document.querySelector(".parte2"), "encaixe2");
       arraste(document.querySelector(".parte3"), "encaixe3");
       arraste(document.querySelector(".parte4"), "encaixe4");
-
     </script>
   </body>
 </html>
