@@ -8,6 +8,11 @@
     <title>Star-Puzzle</title>
   </head>
   <body>
+    <div id="parte-esqu">
+      <div class="parte parte1"></div>
+      <div class="parte parte2"></div>
+    </div>
+
     <div id="box">
       <div id="box-fixar">
         <div id="div1" class="pos-correta">1</div>
@@ -20,14 +25,43 @@
         <div id="encaixe3" class="encaixe"></div>
         <div id="encaixe4" class="encaixe"></div>
       </div>
-      <div class="parte parte1"></div>
-      <div class="parte parte2"></div>
+    </div>
+
+    <div id="parte-dir">
       <div class="parte parte3"></div>
       <div class="parte parte4"></div>
     </div>
 
     <script>
       let conta = 0;
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const pecas = Array.from(document.querySelectorAll(".parte"));
+
+        const possicoes = [
+          { top: "50px", left: "100px" },
+          { top: "350px", left: "100px" },
+          { top: "50px", left: "1000px" },
+          { top: "350px", left: "1000px" },
+        ];
+
+        possicoes.sort(() => Math.random() - 0.5);
+
+        pecas.forEach((p, i) => {
+          p.style.top = possicoes[i].top;
+          p.style.left = possicoes[i].left;
+        });
+      });
+
+      const encaixe1 = document
+        .getElementById("encaixe1")
+        .getBoundingClientRect();
+      const encaixe2 = document
+        .getElementById("encaixe2")
+        .getBoundingClientRect();
+
+      console.log("Left de encaixe1:", encaixe1.left);
+      console.log("Right de encaixe2:", encaixe2.right);
 
       function arraste(div, encaixediv) {
         let arrastando = false;
