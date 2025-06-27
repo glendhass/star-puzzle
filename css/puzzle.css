@@ -29,7 +29,6 @@ body {
   height: 100vh;
   background-color: blueviolet;
 }
-/*muda nd daqui pra baixo*/
 .pos-correta {
   position: absolute;
   width: 50%;
@@ -90,7 +89,6 @@ body {
   right: -25px;
 }
 
-/*pecas*/
 
 .parte {
   width: 250px;
