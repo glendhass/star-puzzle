@@ -9,8 +9,12 @@
   </head>
   <body>
     <div id="parte-esqu">
-      <div class="parte parte1"></div>
-      <div class="parte parte2"></div>
+      <div class="pos-pecas">
+        <div class="parte parte1"></div>
+      </div>
+      <div class="pos-pecas">
+        <div class="parte parte2"></div>
+      </div>
     </div>
 
     <div id="box">
@@ -28,14 +32,18 @@
     </div>
 
     <div id="parte-dir">
-      <div class="parte parte3"></div>
-      <div class="parte parte4"></div>
+      <div class="pos-pecas">
+        <div class="parte parte3"></div>
+      </div>
+      <div class="pos-pecas">
+        <div class="parte parte4"></div>
+      </div>
     </div>
 
     <script>
       let conta = 0;
 
-      window.addEventListener("DOMContentLoaded", () => {
+      /* window.addEventListener("DOMContentLoaded", () => {
         const pecas = Array.from(document.querySelectorAll(".parte"));
 
         const possicoes = [
@@ -52,8 +60,8 @@
           p.style.left = possicoes[i].left;
         });
       });
-
-      const encaixe1 = document
+*/
+      /* const encaixe1 = document
         .getElementById("encaixe1")
         .getBoundingClientRect();
       const encaixe2 = document
@@ -61,7 +69,7 @@
         .getBoundingClientRect();
 
       console.log("Left de encaixe1:", encaixe1.left);
-      console.log("Right de encaixe2:", encaixe2.right);
+      console.log("Right de encaixe2:", encaixe2.right);*/
 
       function arraste(div, encaixediv) {
         let arrastando = false;
