@@ -44,36 +44,38 @@
       let conta = 0;
 
       /* window.addEventListener("DOMContentLoaded", () => {
-        const pecas = Array.from(document.querySelectorAll(".parte"));
+              const pecas = Array.from(document.querySelectorAll(".parte"));
 
-        const possicoes = [
-          { top: "50px", left: "100px" },
-          { top: "350px", left: "100px" },
-          { top: "50px", left: "1000px" },
-          { top: "350px", left: "1000px" },
-        ];
+              const possicoes = [
+                { top: "50px", left: "100px" },
+                { top: "350px", left: "100px" },
+                { top: "50px", left: "1000px" },
+                { top: "350px", left: "1000px" },
+              ];
 
-        possicoes.sort(() => Math.random() - 0.5);
+              possicoes.sort(() => Math.random() - 0.5);
 
-        pecas.forEach((p, i) => {
-          p.style.top = possicoes[i].top;
-          p.style.left = possicoes[i].left;
-        });
-      });
-*/
+              pecas.forEach((p, i) => {
+                p.style.top = possicoes[i].top;
+                p.style.left = possicoes[i].left;
+              });
+            });
+      */
       /* const encaixe1 = document
-        .getElementById("encaixe1")
-        .getBoundingClientRect();
-      const encaixe2 = document
-        .getElementById("encaixe2")
-        .getBoundingClientRect();
+              .getElementById("encaixe1")
+              .getBoundingClientRect();
+            const encaixe2 = document
+              .getElementById("encaixe2")
+              .getBoundingClientRect();
 
-      console.log("Left de encaixe1:", encaixe1.left);
-      console.log("Right de encaixe2:", encaixe2.right);*/
+            console.log("Left de encaixe1:", encaixe1.left);
+            console.log("Right de encaixe2:", encaixe2.right);*/
 
       function arraste(div, encaixediv) {
         let arrastando = false;
         let offsetX, offsetY;
+        let animando = false;
+        let destinoX, destinoY;
 
         div.addEventListener("mousedown", (e) => {
           if (div.dataset.fixado === "true") return;
@@ -84,18 +86,37 @@
 
         document.addEventListener("mousemove", (e) => {
           if (arrastando) {
-            div.style.left = e.clientX - offsetX + "px";
-            div.style.top = e.clientY - offsetY + "px";
+            let pecaLeft = e.clientX - offsetX;
+            let pecaTop = e.clientY - offsetY;
+
+            const larguraTela = window.innerWidth;
+            const alturaTela = window.innerHeight;
+
+            const larguraPeca = div.offsetWidth;
+            const alturaPeca = div.offsetHeight;
+
+            posicaoX = Math.max(
+              0,
+              Math.min(pecaLeft, larguraTela - larguraPeca)
+            );
+            posicaoY = Math.max(0, Math.min(pecaTop, alturaTela - alturaPeca));
+
+            if (!animando) {
+              animando = true;
+              requestAnimationFrame(atualizarPosicao);
+            }
           }
         });
-
+        function atualizarPosicao() {
+          div.style.left = posicaoX + "px";
+          div.style.top = posicaoY + "px";
+          animando = false;
+        }
         document.addEventListener("mouseup", () => {
           arrastando = false;
           const pos = document.getElementById(encaixediv);
           const encaixe = pos.getBoundingClientRect();
           const quad = div.getBoundingClientRect();
-
-          let afirmar;
 
           if (
             quad.top >= encaixe.top &&
@@ -103,7 +124,6 @@
             quad.left >= encaixe.left &&
             quad.right <= encaixe.right
           ) {
-            div.style.backgroundColor = "black";
             div.style.top = encaixe.top + 25 + "px";
             div.style.left = encaixe.left + 25 + "px";
             div.style.cursor = "default";
@@ -113,33 +133,35 @@
               div.dataset.fixado = "true";
 
               if (conta == 4) {
-                const fundo = document.createElement("div");
-                fundo.id = "fundo";
+                setTimeout(() => {
+                  const fundo = document.createElement("div");
+                  fundo.id = "fundo";
 
-                const caixa = document.createElement("div");
-                caixa.id = "caixa";
+                  const caixa = document.createElement("div");
+                  caixa.id = "caixa";
 
-                const parab = document.createElement("p");
-                parab.id = "parabens";
-                parab.textContent =
-                  "Parabéns! Você conseguiu completar o quebra-cabeça! 🎉";
-                caixa.appendChild(parab);
+                  const parab = document.createElement("p");
+                  parab.id = "parabens";
+                  parab.textContent =
+                    "Parabéns! Você conseguiu completar o quebra-cabeça! 🎉";
+                  caixa.appendChild(parab);
 
-                const p = document.createElement("p");
-                p.id = "pergunta";
-                p.textContent = "Você quer tentar de novo?";
-                caixa.appendChild(p);
+                  const p = document.createElement("p");
+                  p.id = "pergunta";
+                  p.textContent = "Você quer tentar de novo?";
+                  caixa.appendChild(p);
 
-                const botao = document.createElement("button");
-                botao.id = "botao-recarregar";
-                botao.textContent = "Tentar novamente";
-                botao.onclick = function () {
-                  location.reload();
-                };
-                caixa.appendChild(botao);
+                  const botao = document.createElement("button");
+                  botao.id = "botao-recarregar";
+                  botao.textContent = "Tentar novamente";
+                  botao.onclick = function () {
+                    location.reload();
+                  };
+                  caixa.appendChild(botao);
 
-                document.body.appendChild(caixa);
-                document.body.appendChild(fundo);
+                  document.body.appendChild(caixa);
+                  document.body.appendChild(fundo);
+                }, 1500);
               }
             }
           }
