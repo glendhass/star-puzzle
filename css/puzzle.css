@@ -35,6 +35,24 @@ body {
   background-color: blueviolet;
 }
 
+#bt-recarregar{
+  all: unset;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 5px;
+  right: 5px;
+  height: 40px;
+  width: 40px;
+  border-radius: 70%;
+  background-color: rgb(11, 138, 32);
+}
+#img-recarregar{
+  width: 30px;
+  height: 30px;
+}
+
 /*no mudar*/
 .pos-correta {
   position: absolute;

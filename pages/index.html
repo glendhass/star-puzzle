@@ -15,6 +15,9 @@
       <div class="pos-pecas">
         <div class="parte parte2"></div>
       </div>
+      <div id="cronometro">
+        <p>0:0</p>
+      </div>
     </div>
 
     <div id="box">
@@ -32,6 +35,9 @@
     </div>
 
     <div id="parte-dir">
+      <button id="bt-recarregar">
+        <img src="/assets/images/recarregar.svg" alt="" id="img-recarregar" />
+      </button>
       <div class="pos-pecas">
         <div class="parte parte3"></div>
       </div>
@@ -41,35 +47,40 @@
     </div>
 
     <script>
+      let segundos = 0;
+      let intervalo;
+
+      window.onload = function () {
+        if (intervalo) return;
+
+        intervalo = setInterval(() => {
+          segundos++;
+          let mins = Math.floor(segundos / 60);
+          let secs = segundos % 60;
+          document.getElementById("cronometro").innerText = mins + ":" + secs;
+        }, 1000);
+      };
+
       let conta = 0;
 
-      /* window.addEventListener("DOMContentLoaded", () => {
-              const pecas = Array.from(document.querySelectorAll(".parte"));
+      const divs = Array.from(document.querySelectorAll(".parte"));
+      const classesPartes = ["parte1", "parte2", "parte3", "parte4"];
+      function embaralharArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+      const classesEmbaralhadas = embaralharArray(classesPartes.slice());
+      divs.forEach((div, i) => {
+        div.classList.remove(...classesPartes);
+        div.classList.add(classesEmbaralhadas[i]);
+      });
 
-              const possicoes = [
-                { top: "50px", left: "100px" },
-                { top: "350px", left: "100px" },
-                { top: "50px", left: "1000px" },
-                { top: "350px", left: "1000px" },
-              ];
-
-              possicoes.sort(() => Math.random() - 0.5);
-
-              pecas.forEach((p, i) => {
-                p.style.top = possicoes[i].top;
-                p.style.left = possicoes[i].left;
-              });
-            });
-      */
-      /* const encaixe1 = document
-              .getElementById("encaixe1")
-              .getBoundingClientRect();
-            const encaixe2 = document
-              .getElementById("encaixe2")
-              .getBoundingClientRect();
-
-            console.log("Left de encaixe1:", encaixe1.left);
-            console.log("Right de encaixe2:", encaixe2.right);*/
+      document.getElementById("bt-recarregar").onclick = function () {
+        location.reload();
+      };
 
       function arraste(div, encaixediv) {
         let arrastando = false;
@@ -133,7 +144,13 @@
               div.dataset.fixado = "true";
 
               if (conta == 4) {
+                clearInterval(intervalo);
+                intervalo = null;
                 setTimeout(() => {
+                  let mins = Math.floor(segundos / 60);
+                  let secs = segundos % 60;
+                  let tempoFinal = mins + ":" + secs;
+
                   const fundo = document.createElement("div");
                   fundo.id = "fundo";
 
@@ -145,6 +162,11 @@
                   parab.textContent =
                     "Parabéns! Você conseguiu completar o quebra-cabeça! 🎉";
                   caixa.appendChild(parab);
+
+                  const cont = document.createElement("p");
+                  cont.id = "contagem";
+                  cont.textContent = "Você terminou em:" + tempoFinal;
+                  caixa.appendChild(cont);
 
                   const p = document.createElement("p");
                   p.id = "pergunta";
