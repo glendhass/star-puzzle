@@ -99,16 +99,26 @@ function arraste(div, encaixediv, posCorreta) {
       div.style.cursor = "default";
       div.style.zIndex = 1;
 
+
       if (div.dataset.fixado !== "true") {
         contador += 1;
         div.dataset.fixado = "true";
         if (contador == contar.length) {
           clearInterval(intervalo);
           intervalo = null;
+
+          document
+            .querySelectorAll(".pos-correta")
+            .forEach((pc) => (pc.style.border = "none"));
+
           setTimeout(() => {
             let mins = Math.floor(segundos / 60);
             let secs = segundos % 60;
-            let tempoFinal = mins + ":" + secs;
+
+            let m = String(mins).padStart(2, "0");
+            let s = String(secs).padStart(2, "0");
+
+            let tempoFinal = m + ":" + s;
 
             const fundo = document.createElement("div");
             fundo.id = "fundo";
